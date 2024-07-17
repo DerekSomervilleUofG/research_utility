@@ -1,0 +1,24 @@
+[project]
+name = "utility"
+version = "2024.0.0"
+dependencies = [
+]
+requires-python = ">=3.9"
+authors = [
+  {name = "Derek Somerville", email = "derek.somerville@glasgow.ac.uk"}
+]
+description = "Python utilities"
+readme = "README.md"
+license = {file = "LICENSE.txt"}
+keywords = ["read", "write", "text"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python"
+]
+
+[project.urls]
+Repository = "https://stgit.dcs.gla.ac.uk/DerekSomerville/utility.git"
+
+[tool.setuptools]
+packages = ["utility"]
+py-modules = ["__init__"] 
