@@ -1,6 +1,8 @@
 import re
-
+from utility.AccessToken import AccessToken
 class UtilityText:
+    
+    access_token = AccessToken()
 
     def get_non_blank_lines(self, content):
         content = content.replace('\n\n\n', '\n').replace('\n\n', '\n')
@@ -111,6 +113,20 @@ class UtilityText:
 
     def leading_zero(number):
         return "{:02d}".format(number)
+    
+    def get_default_repo(self, https_project):
+        first = "https://"
+        last = ".git"
+        repo = ""
+        if isinstance(https_project, str):
+            if first in https_project:
+                https_project = https_project.replace(first, "")
+            if last in https_project:
+                https_project = https_project.replace(last, "")
+            user_name, access_token = self.access_token.get_access_token()
+            repo = first + user_name + ":" + access_token + "@" + https_project
+        return repo
+
 if __name__ == "__main__":
     utility_text = UtilityText()
     list = ["testPlayToHandAtTableCanPlayASevenPass", "testPlayToHandAtTableCanPlayASevenFail", "testPlayToHandAtTablePlayASeven", "testPlayToHandAtTableCanPlayASixPass", "testPlayToHandAtTableCanPlayAFiveFail", "testPlayToHandAtTablePlayASix"]
