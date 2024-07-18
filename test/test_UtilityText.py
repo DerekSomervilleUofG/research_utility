@@ -23,3 +23,15 @@ class TestUtilityText(TestCase):
 
     def test_break_camel_case(self):
         self.assertEqual(["camel", "case"], self.utility_text.break_camel_case("camelCase"))
+
+    def test_get_default_repo(self):
+        url = "https://git.dcs.gla.ac.uk/DerekSomerville/utility"
+        self.assertEqual(url, self.utility_text.get_default_repo(url))
+        
+    def test_get_default_repo_user_name(self):
+        url = "https://git.dcs.gla.ac.uk/DerekSomerville/utility"
+        self.assertEqual(url.replace("//", "//DerekSomerville@"), self.utility_text.get_default_repo(url, "DerekSomerville"))
+        
+    def test_get_default_repo_access_token(self):
+        url = "https://git.dcs.gla.ac.uk/DerekSomerville/utility"
+        self.assertEqual(url.replace("//", "//DerekSomerville:1234@"), self.utility_text.get_default_repo(url, "DerekSomerville", "1234"))

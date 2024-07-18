@@ -114,7 +114,7 @@ class UtilityText:
     def leading_zero(number):
         return "{:02d}".format(number)
     
-    def get_default_repo(self, https_project):
+    def get_default_repo(self, https_project, user_name=None, access_token=None):
         first = "https://"
         last = ".git"
         repo = ""
@@ -123,8 +123,13 @@ class UtilityText:
                 https_project = https_project.replace(first, "")
             if last in https_project:
                 https_project = https_project.replace(last, "")
-            user_name, access_token = self.access_token.get_access_token()
-            repo = first + user_name + ":" + access_token + "@" + https_project
+            repo = first 
+            if user_name is not None:
+                repo += user_name
+                if access_token is not None:
+                    repo += ":" + access_token
+                repo += "@"
+            repo += https_project
         return repo
 
 if __name__ == "__main__":
