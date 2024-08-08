@@ -20,8 +20,8 @@ def get_file_to_commit(dir_name, output):
             files.append(file.strip())
     return files
     
-def check_git_status(base_directory):
-    direcotries_to_update = {}
+def check_git_status(base_directory, option):
+    directories_to_update = {}
     print("*******************")
     print("****** START ******")
     for dir_name in os.listdir(base_directory):
@@ -31,20 +31,20 @@ def check_git_status(base_directory):
             print(f"Checking git status in: {dir_path}")
             # Run git status and capture the output
             try:
-                result = subprocess.run(['git', '-C', dir_path, 'status'], check=True, capture_output=True, text=True)
+                result = subprocess.run(['git', '-C', dir_path, option], check=True, capture_output=True, text=True)
                 print(result.stdout)
                 if "nothing to commit" in result.stdout:
-                    direcotries_to_update[dir_name] = "Committed"
+                    directories_to_update[dir_name] = "Committed"
                 else:
-                    direcotries_to_update[dir_name] = get_file_to_commit(dir_name, result.stdout)
+                    directories_to_update[dir_name] = get_file_to_commit(dir_name, result.stdout)
             except subprocess.CalledProcessError as e:
                 print(f"Failed to get git status for {dir_path}: {e}")
-                direcotries_to_update.append(dir_name)
-    print("Direcotires to commit", direcotries_to_update)
+                directories_to_update[dir_name] = "Failed"
+    print("Directories to commit", directories_to_update)
 
 if __name__ == "__main__":
+    option = "status" 
     if len(sys.argv) > 1:
-        directory = sys.argv[1]
-    else:
-        directory = os.getcwd()   
-    check_git_status(directory)
+        option = sys.argv[1]
+    directory = os.getcwd()  
+    check_git_status(directory, option)
