@@ -89,3 +89,6 @@ class ListUtility:
             if found_item is not None:
                 same_list.append(item)
         return set(same_list)
+    
+    def merge_list(start_list, append_list):
+        return list(set(start_list + append_list))

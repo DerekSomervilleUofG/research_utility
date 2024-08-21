@@ -17,7 +17,6 @@ class TestUtilityText(TestCase):
     def test_case_to_word_camel(self):
         self.assertEqual(["camel", "case"], self.utility_text.case_to_word("camelCase"))
 
-
     def test_break_snake_case(self):
         self.assertEqual(["snake", "case"], self.utility_text.break_snake_case("snake_case"))
 
@@ -35,3 +34,9 @@ class TestUtilityText(TestCase):
     def test_get_default_repo_access_token(self):
         url = "https://git.dcs.gla.ac.uk/DerekSomerville/utility"
         self.assertEqual(url.replace("//", "//DerekSomerville:1234@"), self.utility_text.get_default_repo(url, "DerekSomerville", "1234"))
+        
+    def test_formate_text(self):
+        self.assertEqual("Derek", UtilityText.formate_text("Derek"))
+        
+    def test_formate_text_single(self):
+        self.assertEqual("Derek", UtilityText.formate_text('Derek'))
