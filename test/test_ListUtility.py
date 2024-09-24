@@ -13,3 +13,7 @@ class TestListUtility(TestCase):
         start_list = [1, 2, 3]
         append_list = [1, 2, 3]
         self.assertEqual([1, 2, 3], ListUtility.merge_list(start_list, append_list))
+        
+    def test_strip_list_from_delimiter(self):
+        data = ["dog$bark", "cat$meow", "cow$moo"]
+        self.assertEqual(["dog", "cat", "cow"], ListUtility.strip_list_from_delimiter(data, "$"))

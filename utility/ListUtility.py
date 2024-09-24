@@ -92,3 +92,6 @@ class ListUtility:
     
     def merge_list(start_list, append_list):
         return list(set(start_list + append_list))
+    
+    def strip_list_from_delimiter(data, delimiter):
+        return [item.split(delimiter)[0] for item in data]
