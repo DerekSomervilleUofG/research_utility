@@ -12,4 +12,6 @@ class DictUtility:
             "]": "\n",
             ": ": "\n",
         }   
+        for old, new in replace_pairs.items():
+            content = content.replace(old, new)
         return content
