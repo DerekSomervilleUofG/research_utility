@@ -18,7 +18,7 @@ classifiers = [
 ]
 
 [project.urls]
-Repository = "https://https://github.com/DerekSomervilleUofG/research_utility.git"
+Repository = "https://github.com/DerekSomervilleUofG/research_utility.git"
 
 [tool.setuptools]
 packages = ["utility"]
