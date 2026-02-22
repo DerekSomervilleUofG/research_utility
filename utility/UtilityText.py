@@ -96,11 +96,13 @@ class UtilityText:
         return output_string[0:first_ocurence]
 
     def formate_text(input_text):
+        remove_char = ["\n", ","]
         if input_text is None:
             output = ""
         else:
             output = input_text.replace("'", "''")
-            output = output.replace("\n", "")
+            for char in remove_char:
+                output = output.replace(char, "")
         return output
 
     def first_occurence(input_string, to_patterns):
